@@ -17,6 +17,7 @@ class UserVOMapperTest {
     @Test
     void convert() {
         UserVO expected = ModelUtils.getUserVOWithData();
+        expected.setUserFriends(null);
 
         User userToBeConverted = User.builder()
             .id(expected.getId())
@@ -28,6 +29,9 @@ class UserVOMapperTest {
             .emailNotification(expected.getEmailNotification())
             .userStatus(expected.getUserStatus())
             .rating(expected.getRating())
+            .refreshTokenKey(expected.getRefreshTokenKey())
+            .dateOfRegistration(expected.getDateOfRegistration())
+            .city(expected.getCity())
             .verifyEmail(expected.getVerifyEmail() != null ? VerifyEmail.builder()
                 .id(expected.getVerifyEmail().getId())
                 .user(User.builder()
