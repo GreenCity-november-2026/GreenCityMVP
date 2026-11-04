@@ -58,11 +58,11 @@ public class HabitFactControllerTest {
     @BeforeEach
     void setup() {
         this.mockMvc = MockMvcBuilders
-                .standaloneSetup(habitFactController)
-                .setCustomArgumentResolvers(new PageableHandlerMethodArgumentResolver())
-                .setControllerAdvice(customExceptionHandler)
-                .setValidator(validator)
-                .build();
+            .standaloneSetup(habitFactController)
+            .setCustomArgumentResolvers(new PageableHandlerMethodArgumentResolver())
+            .setControllerAdvice(customExceptionHandler)
+            .setValidator(validator)
+            .build();
     }
 
     @Test
@@ -103,9 +103,9 @@ public class HabitFactControllerTest {
         when(mapper.map(habitFactVO, HabitFactDtoResponse.class)).thenReturn(new HabitFactDtoResponse());
 
         mockMvc.perform(post(factsLink)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"translations\": [], \"habit\": {\"habitId\": 1}}"))
-                .andExpect(status().isCreated());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content("{\"translations\": [], \"habit\": {\"habitId\": 1}}"))
+            .andExpect(status().isCreated());
 
         verify(habitFactService).save(any(HabitFactPostDto.class));
         verify(mapper).map(habitFactVO, HabitFactDtoResponse.class);
@@ -118,9 +118,9 @@ public class HabitFactControllerTest {
         when(mapper.map(habitFactVO, HabitFactPostDto.class)).thenReturn(new HabitFactPostDto());
 
         mockMvc.perform(put(factsLink + "/1")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"translations\": [], \"habit\": {\"habitId\": 1}}"))
-                .andExpect(status().isOk());
+            .contentType(MediaType.APPLICATION_JSON)
+            .content("{\"translations\": [], \"habit\": {\"habitId\": 1}}"))
+            .andExpect(status().isOk());
 
         verify(habitFactService).update(any(HabitFactUpdateDto.class), eq(1L));
         verify(mapper).map(habitFactVO, HabitFactPostDto.class);
@@ -141,14 +141,14 @@ public class HabitFactControllerTest {
     @Test
     void getAllTest() throws Exception {
         PageableDto<LanguageTranslationDTO> pageableDto =
-                new PageableDto<>(List.of(new LanguageTranslationDTO()), 1L, 0, 1);
+            new PageableDto<>(List.of(new LanguageTranslationDTO()), 1L, 0, 1);
 
         when(habitFactService.getAllHabitFacts(any(Pageable.class), eq("en")))
-                .thenReturn(pageableDto);
+            .thenReturn(pageableDto);
 
         mockMvc.perform(get(factsLink)
-                        .header("Accept-Language", "en"))
-                .andExpect(status().isOk());
+            .header("Accept-Language", "en"))
+            .andExpect(status().isOk());
 
         verify(habitFactService).getAllHabitFacts(any(Pageable.class), eq("en"));
     }
