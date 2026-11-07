@@ -50,10 +50,10 @@ class HabitControllerTest {
         HabitDto habitDto = mock(HabitDto.class);
 
         when(habitService.getByIdAndLanguageCode(1L, "en"))
-                .thenReturn(habitDto);
+            .thenReturn(habitDto);
 
         ResponseEntity<HabitDto> response =
-                habitController.getHabitById(habitId, locale);
+            habitController.getHabitById(habitId, locale);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(habitDto, response.getBody());
@@ -70,19 +70,18 @@ class HabitControllerTest {
         PageableDto<HabitDto> pageableDto = mock(PageableDto.class);
 
         when(habitService.getAllHabitsByLanguageCode(
-                userVO, pageable, "en"))
-                .thenReturn(pageableDto);
+            userVO, pageable, "en"))
+            .thenReturn(pageableDto);
 
         ResponseEntity<PageableDto<HabitDto>> response =
-                habitController.getAll(userVO, locale, pageable);
+            habitController.getAll(userVO, locale, pageable);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(pageableDto, response.getBody());
 
         verify(habitService).getAllHabitsByLanguageCode(
-                userVO, pageable, "en");
+            userVO, pageable, "en");
     }
-
 
     @Test
     void getAllByTagsAndLanguageCodeReturnsHabits() {
@@ -93,17 +92,16 @@ class HabitControllerTest {
         PageableDto<HabitDto> pageableDto = mock(PageableDto.class);
 
         when(habitService.getAllByTagsAndLanguageCode(pageable, tags, "en"))
-                .thenReturn(pageableDto);
+            .thenReturn(pageableDto);
 
         ResponseEntity<PageableDto<HabitDto>> response =
-                habitController.getAllByTagsAndLanguageCode(locale, tags, pageable);
+            habitController.getAllByTagsAndLanguageCode(locale, tags, pageable);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(pageableDto, response.getBody());
 
         verify(habitService).getAllByTagsAndLanguageCode(pageable, tags, "en");
     }
-
 
     @Test
     void getAllByDifferentParametersReturnsHabits() {
@@ -119,18 +117,18 @@ class HabitControllerTest {
         PageableDto<HabitDto> pageableDto = mock(PageableDto.class);
 
         when(habitService.getAllByDifferentParameters(
-                userVO, pageable, tags, isCustomHabit, complexities, "en"))
-                .thenReturn(pageableDto);
+            userVO, pageable, tags, isCustomHabit, complexities, "en"))
+            .thenReturn(pageableDto);
 
         ResponseEntity<PageableDto<HabitDto>> response =
-                habitController.getAllByDifferentParameters(
-                        userVO, locale, tags, isCustomHabit, complexities, pageable);
+            habitController.getAllByDifferentParameters(
+                userVO, locale, tags, isCustomHabit, complexities, pageable);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(pageableDto, response.getBody());
 
         verify(habitService).getAllByDifferentParameters(
-                userVO, pageable, tags, isCustomHabit, complexities, "en");
+            userVO, pageable, tags, isCustomHabit, complexities, "en");
     }
 
     @Test
@@ -144,9 +142,8 @@ class HabitControllerTest {
 
         Pageable pageable = PageRequest.of(0, 10);
 
-        assertThrows(BadRequestException.class, () ->
-                habitController.getAllByDifferentParameters(
-                        userVO, locale, tags, isCustomHabit, complexities, pageable));
+        assertThrows(BadRequestException.class, () -> habitController.getAllByDifferentParameters(
+            userVO, locale, tags, isCustomHabit, complexities, pageable));
 
         verifyNoInteractions(habitService);
     }
@@ -157,20 +154,19 @@ class HabitControllerTest {
         Locale locale = Locale.ENGLISH;
 
         List<ShoppingListItemDto> items =
-                List.of(mock(ShoppingListItemDto.class));
+            List.of(mock(ShoppingListItemDto.class));
 
         when(habitService.getShoppingListForHabit(habitId, "en"))
-                .thenReturn(items);
+            .thenReturn(items);
 
         ResponseEntity<List<ShoppingListItemDto>> response =
-                habitController.getShoppingListItems(habitId, locale);
+            habitController.getShoppingListItems(habitId, locale);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(items, response.getBody());
 
         verify(habitService).getShoppingListForHabit(habitId, "en");
     }
-
 
     @Test
     void findAllHabitsTagsReturnsTags() {
@@ -180,14 +176,13 @@ class HabitControllerTest {
         when(tagsService.findAllHabitsTags("en")).thenReturn(tags);
 
         ResponseEntity<List<String>> response =
-                habitController.findAllHabitsTags(locale);
+            habitController.findAllHabitsTags(locale);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(tags, response.getBody());
 
         verify(tagsService).findAllHabitsTags("en");
     }
-
 
     @Test
     void addCustomHabitReturnsCreated() {
@@ -196,15 +191,15 @@ class HabitControllerTest {
         Principal principal = mock(Principal.class);
 
         AddCustomHabitDtoResponse habitResponse =
-                mock(AddCustomHabitDtoResponse.class);
+            mock(AddCustomHabitDtoResponse.class);
 
         when(principal.getName()).thenReturn("testUser");
 
         when(habitService.addCustomHabit(request, image, "testUser"))
-                .thenReturn(habitResponse);
+            .thenReturn(habitResponse);
 
         ResponseEntity<AddCustomHabitDtoResponse> response =
-                habitController.addCustomHabit(request, image, principal);
+            habitController.addCustomHabit(request, image, principal);
 
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertEquals(habitResponse, response.getBody());
@@ -220,20 +215,19 @@ class HabitControllerTest {
         when(userVO.getId()).thenReturn(10L);
 
         List<UserProfilePictureDto> pictures =
-                List.of(mock(UserProfilePictureDto.class));
+            List.of(mock(UserProfilePictureDto.class));
 
         when(habitService.getFriendsAssignedToHabitProfilePictures(habitId, 10L))
-                .thenReturn(pictures);
+            .thenReturn(pictures);
 
         ResponseEntity<List<UserProfilePictureDto>> response =
-                habitController.getFriendsAssignedToHabitProfilePictures(
-                        habitId, userVO
-                );
+            habitController.getFriendsAssignedToHabitProfilePictures(
+                habitId, userVO);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(pictures, response.getBody());
 
         verify(habitService)
-                .getFriendsAssignedToHabitProfilePictures(habitId, 10L);
+            .getFriendsAssignedToHabitProfilePictures(habitId, 10L);
     }
 }
