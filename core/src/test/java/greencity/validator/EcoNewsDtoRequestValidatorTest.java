@@ -32,7 +32,7 @@ class EcoNewsDtoRequestValidatorTest {
         request.setTags(List.of());
 
         assertThrows(WrongCountOfTagsException.class,
-                () -> validator.isValid(request, null));
+            () -> validator.isValid(request, null));
     }
 
     @Test
@@ -41,7 +41,7 @@ class EcoNewsDtoRequestValidatorTest {
         request.setTags(List.of("News", "Eco", "Nature", "Green"));
 
         assertThrows(WrongCountOfTagsException.class,
-                () -> validator.isValid(request, null));
+            () -> validator.isValid(request, null));
     }
 
     @Test
@@ -74,7 +74,7 @@ class EcoNewsDtoRequestValidatorTest {
         request.setSource("invalid");
 
         assertThrows(InvalidURLException.class,
-                () -> validator.isValid(request, null));
+            () -> validator.isValid(request, null));
     }
 
     @Test
