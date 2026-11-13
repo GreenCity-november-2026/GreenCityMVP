@@ -15,41 +15,40 @@ public final class SwaggerExampleModel {
         + "\t<pre>\n";
 
     private static final String AFTER_EXAMPLE = "\t</pre>\n"
-            + "</div>";
+        + "</div>";
 
     public static final String ADD_ECO_NEWS_REQUEST =
-            "Add Eco News Request\n"
-                    + IMAGE_DESCRIPTION
-                    + BEFORE_EXAMPLE
-                    + "{\n"
-                    + "  \"title\": \"string\",\n"
-                    + "  \"text\": \"string\",\n"
-                    + "  \"shortInfo\": \"string\",\n"
-                    + "  \"tags\": [\n"
-                    + "    \"string\"\n"
-                    + "  ],\n"
-                    + "  \"source\": \"https://example.org/\",\n"
-                    + "  \"image\": \"string\"\n"
-                    + "}\n"
-                    + AFTER_EXAMPLE;
+        "Add Eco News Request\n"
+            + IMAGE_DESCRIPTION
+            + BEFORE_EXAMPLE
+            + "{\n"
+            + "  \"title\": \"string\",\n"
+            + "  \"text\": \"string\",\n"
+            + "  \"shortInfo\": \"string\",\n"
+            + "  \"tags\": [\n"
+            + "    \"string\"\n"
+            + "  ],\n"
+            + "  \"source\": \"https://example.org/\",\n"
+            + "  \"image\": \"string\"\n"
+            + "}\n"
+            + AFTER_EXAMPLE;
 
     public static final String UPDATE_ECO_NEWS =
-            "Update Eco News\n"
-                    + IMAGE_DESCRIPTION
-                    + BEFORE_EXAMPLE
-                    + "{\n"
-                    + "  \"id\": 0,\n"
-                    + "  \"title\": \"string\",\n"
-                    + "  \"content\": \"string\",\n"
-                    + "  \"shortInfo\": \"string\",\n"
-                    + "  \"tags\": [\n"
-                    + "    \"string\"\n"
-                    + "  ],\n"
-                    + "  \"source\": \"https://example.org/\",\n"
-                    + "  \"image\": \"string\"\n"
-                    + "}\n"
-                    + AFTER_EXAMPLE;
-
+        "Update Eco News\n"
+            + IMAGE_DESCRIPTION
+            + BEFORE_EXAMPLE
+            + "{\n"
+            + "  \"id\": 0,\n"
+            + "  \"title\": \"string\",\n"
+            + "  \"content\": \"string\",\n"
+            + "  \"shortInfo\": \"string\",\n"
+            + "  \"tags\": [\n"
+            + "    \"string\"\n"
+            + "  ],\n"
+            + "  \"source\": \"https://example.org/\",\n"
+            + "  \"image\": \"string\"\n"
+            + "}\n"
+            + AFTER_EXAMPLE;
 
     public static final String USER_PROFILE_PICTURE_DTO =
         "User Profile Picture\n"
