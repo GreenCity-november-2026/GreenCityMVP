@@ -14,22 +14,41 @@ public final class SwaggerExampleModel {
         + "\t</ul>\n"
         + "\t<pre>\n";
 
-    private static final String EXAMPLE =
-        "  \"image\": \"string\",\n"
-            + "  \"source\": \"https://example.org/\",\n"
+    private static final String AFTER_EXAMPLE = "\t</pre>\n"
+        + "</div>";
+
+    public static final String ADD_ECO_NEWS_REQUEST =
+        "Add Eco News Request\n"
+            + IMAGE_DESCRIPTION
+            + BEFORE_EXAMPLE
+            + "{\n"
+            + "  \"title\": \"string\",\n"
+            + "  \"text\": \"string\",\n"
             + "  \"shortInfo\": \"string\",\n"
             + "  \"tags\": [\n"
             + "    \"string\"\n"
             + "  ],\n"
-            + "  \"titleTranslation\":\n"
-            + "     {\"content\": \"string\",\n"
-            + "     \"languageCode\": \"string\"},\n"
-            + "  \"textTranslation\":\n"
-            + "     {\"content\": \"string\",\n"
-            + "     \"languageCode\": \"string\"}\n";
+            + "  \"source\": \"https://example.org/\",\n"
+            + "  \"image\": \"string\"\n"
+            + "}\n"
+            + AFTER_EXAMPLE;
 
-    private static final String AFTER_EXAMPLE = "\t</pre>\n"
-        + "</div>";
+    public static final String UPDATE_ECO_NEWS =
+        "Update Eco News\n"
+            + IMAGE_DESCRIPTION
+            + BEFORE_EXAMPLE
+            + "{\n"
+            + "  \"id\": 0,\n"
+            + "  \"title\": \"string\",\n"
+            + "  \"content\": \"string\",\n"
+            + "  \"shortInfo\": \"string\",\n"
+            + "  \"tags\": [\n"
+            + "    \"string\"\n"
+            + "  ],\n"
+            + "  \"source\": \"https://example.org/\",\n"
+            + "  \"image\": \"string\"\n"
+            + "}\n"
+            + AFTER_EXAMPLE;
 
     public static final String USER_PROFILE_PICTURE_DTO =
         "User Profile Picture\n"
@@ -40,23 +59,6 @@ public final class SwaggerExampleModel {
             + "}\n"
             + AFTER_EXAMPLE;
 
-    public static final String ADD_ECO_NEWS_REQUEST =
-        "Add Eco News Request\n"
-            + IMAGE_DESCRIPTION
-            + BEFORE_EXAMPLE
-            + "{\n"
-            + EXAMPLE
-            + "}\n"
-            + AFTER_EXAMPLE;
-    public static final String UPDATE_ECO_NEWS =
-        "Update Eco News\n"
-            + IMAGE_DESCRIPTION
-            + BEFORE_EXAMPLE
-            + "{\n"
-            + "  \"id\": 0,\n"
-            + EXAMPLE
-            + "}\n"
-            + AFTER_EXAMPLE;
     public static final String ADD_EVENT = BEFORE_EXAMPLE
         + "{\n"
         + "\t\"title\":\"string\",\n"
