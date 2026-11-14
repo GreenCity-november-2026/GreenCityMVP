@@ -370,8 +370,8 @@ public class EcoNewsController {
      */
     @Operation(summary = "Check if user liked news")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = HttpStatuses.OK),
-            @ApiResponse(responseCode = "400", description = HttpStatuses.BAD_REQUEST)
+        @ApiResponse(responseCode = "200", description = HttpStatuses.OK),
+        @ApiResponse(responseCode = "400", description = HttpStatuses.BAD_REQUEST)
     })
     @GetMapping("/isLikedByUser")
     public ResponseEntity<Boolean> checkNewsIsLikedByUser(@RequestParam("econewsId") Long econewsId,
