@@ -29,7 +29,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import java.security.Principal;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -220,10 +219,10 @@ public class HabitController {
     public ResponseEntity<AddCustomHabitDtoResponse> addCustomHabit(
         @RequestPart @Valid AddCustomHabitDtoRequest request,
         @Parameter(description = "Image of habit") @ImageValidation MultipartFile image,
-        @Parameter(hidden = true) Principal principal) {
+        @Parameter(hidden = true) @CurrentUser UserVO userVO) {
         return ResponseEntity
             .status(HttpStatus.CREATED)
-            .body(habitService.addCustomHabit(request, image, principal.getName()));
+            .body(habitService.addCustomHabit(request, image, userVO.getEmail()));
     }
 
     /**

@@ -21,7 +21,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.security.Principal;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -188,18 +187,18 @@ class HabitControllerTest {
     void addCustomHabitReturnsCreated() {
         AddCustomHabitDtoRequest request = mock(AddCustomHabitDtoRequest.class);
         MultipartFile image = mock(MultipartFile.class);
-        Principal principal = mock(Principal.class);
+        UserVO userVO = mock(UserVO.class);
 
         AddCustomHabitDtoResponse habitResponse =
             mock(AddCustomHabitDtoResponse.class);
 
-        when(principal.getName()).thenReturn("testUser");
+        when(userVO.getEmail()).thenReturn("testUser");
 
         when(habitService.addCustomHabit(request, image, "testUser"))
             .thenReturn(habitResponse);
 
         ResponseEntity<AddCustomHabitDtoResponse> response =
-            habitController.addCustomHabit(request, image, principal);
+            habitController.addCustomHabit(request, image, userVO);
 
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertEquals(habitResponse, response.getBody());
