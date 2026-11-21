@@ -27,7 +27,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import jakarta.validation.Valid;
-import java.security.Principal;
 import java.util.List;
 import java.util.Locale;
 
@@ -77,9 +76,9 @@ public class EcoNewsController {
             required = true) @RequestPart @ValidEcoNewsDtoRequest AddEcoNewsDtoRequest addEcoNewsDtoRequest,
         @Parameter(description = "Image of eco news") @ImageValidation @RequestPart(
             required = false) MultipartFile image,
-        @Parameter(hidden = true) Principal principal) {
+        @Parameter(hidden = true) @CurrentUser UserVO user) {
         return ResponseEntity.status(HttpStatus.CREATED).body(
-            ecoNewsService.saveEcoNews(addEcoNewsDtoRequest, image, principal.getName()));
+            ecoNewsService.saveEcoNews(addEcoNewsDtoRequest, image, user.getEmail()));
     }
 
     /**

@@ -30,7 +30,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import jakarta.validation.Valid;
-import java.security.Principal;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -182,9 +181,9 @@ public class ManagementEcoNewsController {
     public GenericResponseDto saveEcoNews(@Valid @RequestPart AddEcoNewsDtoRequest addEcoNewsDtoRequest,
         BindingResult bindingResult, @ImageValidation @RequestParam(required = false,
             name = "file") MultipartFile file,
-        @Parameter(hidden = true) Principal principal) {
+        @Parameter(hidden = true) @CurrentUser UserVO user) {
         if (!bindingResult.hasErrors()) {
-            ecoNewsService.save(addEcoNewsDtoRequest, file, principal.getName());
+            ecoNewsService.save(addEcoNewsDtoRequest, file, user.getEmail());
         }
         return buildGenericResponseDto(bindingResult);
     }
