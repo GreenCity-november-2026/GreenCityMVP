@@ -29,6 +29,7 @@ import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Locale;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.mockito.Mockito.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
@@ -89,7 +90,7 @@ class HabitStatisticControllerTest {
     }
 
     @Test
-    void saveHabitStatistic() {
+    void saveHabitStatistic() throws Exception {
         Long habitId = 1L;
         Long userId = 1L;
 
@@ -113,8 +114,18 @@ class HabitStatisticControllerTest {
 
         when(userVO.getId()).thenReturn(userId);
         when(userService.findByEmail(email)).thenReturn(userVO);
-        when(habitStatisticService.saveByHabitIdAndUserId(habitId, userId, dto))
+        when(habitStatisticService.saveByHabitIdAndUserId(eq(habitId), eq(userId), any(AddHabitStatisticDto.class)))
             .thenReturn(responseDto);
+
+        mockMvc.perform(post("/habit/statistic/{habitId}", habitId)
+            .with(user(email).roles("USER"))
+            .with(csrf())
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(objectMapper.writeValueAsString(dto)))
+            .andExpect(status().isCreated());
+
+        verify(userService).findByEmail(email);
+        verify(habitStatisticService).saveByHabitIdAndUserId(eq(habitId), eq(userId), any(AddHabitStatisticDto.class));
     }
 
     @Test
